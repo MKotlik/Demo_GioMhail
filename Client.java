@@ -553,10 +553,19 @@ public class Client {
     }
 
     public static String getMessageSummary(HeaderStore msgHeader) {
-        int msgNum = msgHeader.getMessageNum();
-        String date = msgHeader.getDate();
-        String from = msgHeader.getFrom();
-        String subject = msgHeader.getSubject();
+        int msgNum = msgHeader.getMessageNum(); //this is alsways present
+        String date = msgHeader.getDate(); //may be null
+        if (date == null) {
+            date = "NO DATE";
+        }
+        String from = msgHeader.getFrom(); //may be null
+        if (from == null) {
+            from = "NO FROM ADDRESS";
+        }
+        String subject = msgHeader.getSubject(); //may be null
+        if (subject == null) {
+            subject = "NO SUBJECT";
+        }
         return msgNum + " | " + date + " | " + from + " | " + subject;
     }
 
